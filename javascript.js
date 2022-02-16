@@ -23,35 +23,58 @@ function playerPlay() {
     }
 }
 
-computerPlay();
-playerPlay();
+let playerScore = 0;
+let computerScore = 0;
+let counter = 1;
 
 function playRound(playerSelection, computerSelection) {
     if (playerSelection === computerSelection) {
-            return "It's a draw!";
+            counter -= 1;
+            return results = "It's a draw!";
     } else if (playerSelection === "rock") {
         if (computerSelection === "paper") {
-            return "You Lose! Paper beats Rock"; 
+            computerScore += 1;
+            return results = "You Lose! Paper beats Rock"; 
         }
         if (computerSelection === "scissors") {
-            return "You Win! Rock beats Scissors"; 
+            playerScore += 1;
+            return results = "You Win! Rock beats Scissors"; 
         }
     } else if (playerSelection === "paper") {
         if (computerSelection === "scissors") {
-            return  "You Lose! Scissors beats Paper"; 
+            computerScore += 1;
+            return results = "You Lose! Scissors beats Paper"; 
         }
         if (computerSelection === "rock") {
-            return  "You Win! Paper beats Rock"; 
+            playerScore += 1;
+            return results =  "You Win! Paper beats Rock"; 
         }
     } else {
         if (computerSelection === "rock") {
-            return  "You Lose! Rock beats Scissors"; 
+            computerScore += 1;
+            return results =  "You Lose! Rock beats Scissors"; 
         }
         if (computerSelection === "paper") {
-            return  "You Win! Scissors beats Paper"; 
+            playerScore += 1;
+            return results =  "You Win! Scissors beats Paper"; 
         }
     }
 }
 
-console.log(playRound(playerSelection, computerSelection));
+function game() {
+    while (counter <= 5) {
+        computerPlay();
+        playerPlay();
+        playRound(playerSelection,computerSelection);
+        alert("Round " + counter
+         + " - " + results + "\r\n\r\n" + "Player: " + playerScore + "\r\n" + "Computer: " + computerScore);
+         counter += 1;
+    }
+    if (playerScore > computerScore) {
+        alert("You have won!");
+    } else {
+        alert("You have lost");
+    }
+}
 
+game();
